@@ -1,5 +1,33 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import Button from "./Button";
+
+// Functional component
+
+const GuessControlToo = ({ onGuess }) => {
+  const [currentGuess, setCurrentGuess] = useState('')
+
+  const handleInputChange = (event) => {
+    setCurrentGuess(event.target.value)
+  }
+
+  const onSubmitGuess = () => {
+    onGuess(currentGuess)
+    setCurrentGuess("")
+  }
+
+  return (
+    <div>
+      <input
+        type="number"
+        value={currentGuess}
+        onChange={handleInputChange}
+      />
+      <Button onClick={onSubmitGuess}>Submit Guess</Button>
+    </div>
+  );
+};
+
+// Class component
 
 class GuessControl extends Component {
   constructor(props) {
@@ -44,4 +72,4 @@ class GuessControl extends Component {
   }
 }
 
-export default GuessControl;
+export default GuessControlToo;
